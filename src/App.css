@@ -1,38 +1,78 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #1d2d50;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color: #e8e8e8;
+  padding: 2rem;
+}
+
+.card-body {
+  padding: 0.5rem
+}
+
+.board {
+  height: 75vh;
+  overflow-y: hidden;
+}
+
+.board .col-md-6 {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.tasks {
+  margin: 0;
+  list-style: none;
+  padding-left: 0;
+  color: #282c34;
+  border: 1px solid #e8e8e8;
+  min-height: 50%;
+}
+
+.tasks li {
+  display: flex;
+  align-items: center;
+  border: solid 2px;
+  border-radius: 0.2em;
+}
+
+.tasks p {
+  max-width: none;
+  margin: 0;
+}
+
+.tasks-avatar {
+  overflow: hidden;
+  flex-shrink: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  border-radius: 9999px;
+  background-color: #133b5c;
   color: white;
+  margin-right: 0.5em;
 }
 
-.App-link {
-  color: #61dafb;
+/* Width */
+::-webkit-scrollbar {
+  width: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
