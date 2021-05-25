@@ -66,6 +66,7 @@ const TaskCard = ({ provided, task, tasks, setTasks }) => {
               <select
                 name="status"
                 id={task.id + "status"}
+                defaultValue={task.status}
                 className={
                   "form-control squared h-100 text-light bg-" + task.status
                 }

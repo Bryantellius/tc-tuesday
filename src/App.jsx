@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import faker from "faker";
 import dayjs from "dayjs";
-import Sprint from "./components/sprint";
-import Backlog from "./components/backlog";
+import Board from "./components/board";
 
 const App = () => {
   const [todoTasks, setToDoTasks] = useState([]);
@@ -59,10 +58,11 @@ const App = () => {
           <div className="row h-100">
             <div className="col-12">
               <h3 className="text-left">Sprint</h3>
-              <Sprint
+              <Board
                 tasks={todoTasks}
                 setTasks={setToDoTasks}
                 addTask={addTask}
+                droppableId="sprint"
               />
             </div>
             <div className="col-12">
@@ -70,9 +70,10 @@ const App = () => {
             </div>
             <div className="col-12">
               <h3 className="text-left">Backlog</h3>
-              <Backlog
+              <Board
                 tasks={completedTasks}
                 addTask={addTask}
+                droppableId="backlog"
                 setTasks={setCompletedTasks}
               />
             </div>

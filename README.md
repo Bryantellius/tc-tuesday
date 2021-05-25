@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# tuesday.com
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Clone of monday.com for React practice
 
-## Available Scripts
+## Part 1: Setup
 
-In the project directory, you can run:
+1. Use `create-react-app` to jumpstart a react project
+2. Delete unnecessary files/packages
+3. Install dayjs, faker, and react-beautiful-dnd npm packages
+4. In the App.jsx, import:
 
-### `yarn start`
+```
+import "./App.css";
+import React, { useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import faker from "faker";
+import dayjs from "dayjs";
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Create state arrays for sprint and completed tasks with `useState([])`
+6. Return the following JSX to start:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+<main className="App">
+      <h1>
+        tuesday.com {" | "}
+        {dayjs().format("MM-DD-YY")}
+      </h1>
+      <hr />
+      <section className="container board">
+        <DragDropContext>
+          <div className="row h-100">
+            <div className="col-12">
+              <h3 className="text-left">Sprint</h3>
+              {/* Sprint Component */}
+            </div>
+            <div className="col-12">
+              <hr />
+            </div>
+            <div className="col-12">
+              <h3 className="text-left">Backlog</h3>
+              {/* Backlog Component */}
+            </div>
+          </div>
+        </DragDropContext>
+      </section>
+    </main>
+```
 
-### `yarn test`
+## Part 2: Boards
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Create a `components/` folder
+2. Create a `board.jsx` file
+3. Import `import { Droppable, Draggable } from "react-beautiful-dnd";`
+4. Return
 
-### `yarn build`
+```
+<>
+      <Droppable droppableId={droppableId}>
+        {(provided) => (
+          <ul
+            className="tasks"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {tasks.map((task, index, arr) => {
+              return (
+                <Draggable
+                  key={index + task.id}
+                  draggableId={task.id}
+                  index={index}
+                >
+                  {(provided) => (
+                    {/* Task Component */}
+                  )}
+                </Draggable>
+              );
+            })}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
+      <div className="row no-gutters">
+        <div className="p-0 col-10">
+          <input
+            id="sprintInput"
+            type="text"
+            placeholder="+ Add"
+            className="form-control squared"
+          />
+        </div>
+        <div className="p-0 col-2">
+          <button
+            className="btn btn-primary squared w-100"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </>
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Create a 

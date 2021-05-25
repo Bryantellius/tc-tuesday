@@ -1,20 +1,20 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import TaskCard from "./TaskCard";
 
-const completed = ({ tasks, addTask, setTasks }) => {
+const board = ({ tasks, addTask, setTasks, droppableId }) => {
   const createTask = (e) => {
-    const task = document.getElementById("completedInput");
+    const task = document.getElementById(droppableId + "Input");
     if (task.value.trim().length === 0) {
       return;
     } else if (e.keyCode === 13 || e.type === "click") {
-      addTask(task.value, "backlog");
+      addTask(task.value, droppableId);
       task.value = "";
     }
   };
 
   return (
     <>
-      <Droppable droppableId="backlog">
+      <Droppable droppableId={droppableId}>
         {(provided) => (
           <ul
             className="tasks"
@@ -46,7 +46,7 @@ const completed = ({ tasks, addTask, setTasks }) => {
       <div className="row no-gutters">
         <div className="p-0 col-10">
           <input
-            id="completedInput"
+            id={droppableId + "Input"}
             type="text"
             placeholder="+ Add"
             className="form-control squared"
@@ -66,4 +66,4 @@ const completed = ({ tasks, addTask, setTasks }) => {
   );
 };
 
-export default completed;
+export default board;
