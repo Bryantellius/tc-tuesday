@@ -1,21 +1,34 @@
 import "./App.css";
 import React, { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import list from "./data/list";
+import faker from "faker";
 import dayjs from "dayjs";
-import Todo from "./components/todo";
-import Completed from "./components/completed";
+import Sprint from "./components/sprint";
+import Backlog from "./components/backlog";
 
 const App = () => {
-  const [todoTasks, setToDoTasks] = useState(list);
+  const [todoTasks, setToDoTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+
+  const addTask = (task, board) => {
+    const newTasks = [
+      ...(board === "sprint" ? todoTasks : completedTasks),
+      {
+        id: faker.datatype.uuid(),
+        avatar: "",
+        task,
+        status: "dark",
+      },
+    ];
+    board === "sprint" ? setToDoTasks(newTasks) : setCompletedTasks(newTasks);
+  };
 
   const updateTaskList = (e) => {
     console.log(e);
     if (!e.destination) return;
     if (
-      e.destination.droppableId === "completed" &&
-      e.source.droppableId === "todo"
+      e.destination.droppableId === "backlog" &&
+      e.source.droppableId === "sprint"
     ) {
       const newList = [...completedTasks];
       const [movedItem] = todoTasks.splice(e.source.index, 1);
@@ -23,8 +36,8 @@ const App = () => {
 
       setCompletedTasks(newList);
     } else if (
-      e.destination.droppableId === "todo" &&
-      e.source.droppableId === "completed"
+      e.destination.droppableId === "sprint" &&
+      e.source.droppableId === "backlog"
     ) {
       const newList = [...todoTasks];
       const [movedItem] = completedTasks.splice(e.source.index, 1);
@@ -44,15 +57,23 @@ const App = () => {
       <section className="container board">
         <DragDropContext onDragEnd={updateTaskList}>
           <div className="row h-100">
-            <div className="col-md-6">
-              <h3 className="text-center">To Do</h3>
-              <Todo tasks={todoTasks} updateTaskList={updateTaskList} />
+            <div className="col-12">
+              <h3 className="text-left">Sprint</h3>
+              <Sprint
+                tasks={todoTasks}
+                setTasks={setToDoTasks}
+                addTask={addTask}
+              />
             </div>
-            <div className="col-md-6">
-              <h3 className="text-center">Completed</h3>
-              <Completed
+            <div className="col-12">
+              <hr />
+            </div>
+            <div className="col-12">
+              <h3 className="text-left">Backlog</h3>
+              <Backlog
                 tasks={completedTasks}
-                updateTaskList={updateTaskList}
+                addTask={addTask}
+                setTasks={setCompletedTasks}
               />
             </div>
           </div>

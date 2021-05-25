@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #1d2d50;
+  background-color: #181b34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,13 +10,25 @@
   padding: 2rem;
 }
 
-.card-body {
-  padding: 0.5rem
+.bg-not-started {
+  background-color: var(--dark) !important;
+}
+.bg-working {
+  background-color: orange !important;
+}
+.bg-blocked {
+  background-color: tomato !important;
+}
+.bg-finished {
+  background-color: green !important;
 }
 
-.board {
-  height: 75vh;
-  overflow-y: hidden;
+.squared {
+  border-radius: 0px;
+}
+
+.card-body {
+  padding: 0rem;
 }
 
 .board .col-md-6 {
@@ -29,20 +41,29 @@
   list-style: none;
   padding-left: 0;
   color: #282c34;
-  border: 1px solid #e8e8e8;
-  min-height: 50%;
+  min-height: 3rem;
+}
+
+select {
+  user-select: none;
+  border: none !important;
 }
 
 .tasks li {
   display: flex;
   align-items: center;
-  border: solid 2px;
-  border-radius: 0.2em;
+  margin: 0;
+}
+
+.bg-dark-info {
+  background-color: #33354b;
+  color: white;
 }
 
 .tasks p {
   max-width: none;
   margin: 0;
+  text-align: left;
 }
 
 .tasks-avatar {

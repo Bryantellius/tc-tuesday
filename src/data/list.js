@@ -1,16 +1,10 @@
 import faker from "faker";
 
-const seedNum = 10;
-const list = [];
+const seedNum = 7;
+const list = [{ name: "", avatar: "" }];
 
 for (let i = 1; i <= seedNum; i++) {
-  list.push({
-    id: faker.random.alphaNumeric(),
-    name: faker.name.findName(),
-    avatar: faker.image.avatar(),
-    title: faker.name.jobTitle(),
-    task: faker.lorem.sentence(),
-  });
+  list.push({ name: faker.name.firstName(), avatar: faker.image.avatar() });
 }
 
 export default list;
