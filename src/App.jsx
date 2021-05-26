@@ -16,7 +16,7 @@ const App = () => {
         id: faker.datatype.uuid(),
         avatar: "",
         task,
-        status: "dark",
+        status: "not-started",
       },
     ];
     board === "sprint" ? setToDoTasks(newTasks) : setCompletedTasks(newTasks);

@@ -62,9 +62,10 @@ const TaskCard = ({ provided, task, tasks, setTasks }) => {
                 })}
               </select>
             </div>
-            <div className={"col-2"} onChange={changeStatus}>
+            <div className={"col-2"}>
               <select
                 name="status"
+                onChange={changeStatus}
                 id={task.id + "status"}
                 defaultValue={task.status}
                 className={
