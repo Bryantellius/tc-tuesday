@@ -6,7 +6,7 @@
 
 1. Use `create-react-app` to jumpstart a react project
 2. Delete unnecessary files/packages
-3. Install dayjs, faker, and react-beautiful-dnd npm packages
+3. Install dayjs, faker, react-beautiful-dnd, and bootstrap npm packages
 4. In the App.jsx, import:
 
 ```
